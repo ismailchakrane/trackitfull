@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Chakrane Ismail" />
+  <title>Trackit</title>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/offcanvas-navbar/" />
+  <link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"
+    rel="stylesheet" />
+  <link href="/style.css" rel="stylesheet" />
+  <script src="/lib/progressBar.js"></script>
+  <script src="https://getbootstrap.com/docs/5.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/profile">TrackIt</a>
+      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <a href="/auth/logout">
+        <button class="btn btn-outline-danger mx-2" type="button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z" />
+            <path fill-rule="evenodd"
+              d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+          </svg>
+        </button>
+      </a>
+
+    </div>
+  </nav>
+
+  <div class="nav-scroller bg-body shadow-sm">
+    <nav class="nav d-flex justify-content-center" aria-label="Secondary navigation">
+
+      {{#nEquals beton 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="/beton">
+        Béton
+        <span class="badge text-bg-light rounded-pill align-text-bottom">{{beton}}</span>
+      </a>
+      {{/nEquals}}
+
+      {{#equals beton 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="javascript:void(0)">
+        Béton
+        <span class="badge text-bg-light rounded-pill align-text-bottom">0</span>
+      </a>
+      {{/equals}}
+
+      {{#nEquals agglos 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="/agglos">
+        Agglos
+        <span class="badge text-bg-light rounded-pill align-text-bottom">{{agglos}}</span>
+      </a>
+      {{/nEquals}}
+      {{#equals agglos 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="javascript:void(0)">
+        Agglos
+        <span class="badge text-bg-light rounded-pill align-text-bottom">0</span>
+      </a>
+      {{/equals}}
+
+      {{#nEquals paves 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="/paves">
+        Pavés
+        <span class="badge text-bg-light rounded-pill align-text-bottom">{{paves}}</span>
+      </a>
+      {{/nEquals}}
+      {{#equals paves 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="javascript:void(0)">
+        Pavés
+        <span class="badge text-bg-light rounded-pill align-text-bottom">0</span>
+      </a>
+      {{/equals}}
+
+      {{#nEquals plancher 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="/plancher">
+        Plancher
+        <span class="badge text-bg-light rounded-pill align-text-bottom">{{plancher}}</span>
+      </a>
+      {{/nEquals}}
+      {{#equals plancher 0}}
+      <a class="nav-link active col-md-auto" aria-current="page" href="javascript:void(0)">
+        Plancher
+        <span class="badge text-bg-light rounded-pill align-text-bottom">0</span>
+      </a>
+      {{/equals}}
+
+    </nav>
+  </div>
+
+  {{#if data}}
+  {{#each data}}
+
+  <!-- main modale -->
+  <section class="container">
+    <div class="d-flex align-items-center my-3 text-white shadow p-3 mb-3 rounded
+
+    {{#equals state 0}}
+     bg-red
+     {{/equals}}
+     {{#equals state 1}}
+     bg-orange
+     {{/equals}}
+     {{#equals state 2}}
+     bg-yellow
+     {{/equals}}
+     {{#equals state 3}}
+     bg-green
+     {{/equals}}
+     " id="{{NUM_LIV}}" onclick="show(this)">
+      <!-- <img
+          class="me-3"
+          src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-white.svg"
+          alt=""
+          width="48"
+          height="38"
+        /> -->
+      <h3 class="main-id-card"># {{NUM_LIV}}</h3>
+      <div class="lh-1">
+        <h1 class="h6 mb-0 text-white lh-1"></h1>
+        <small></small>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" id="button{{NUM_LIV}}" data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop{{NUM_LIV}}" hidden>
+      Launch
+    </button>
+
+    <div class="modal fade" id="staticBackdrop{{NUM_LIV}}" data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel{{NUM_LIV}}" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel1">Commande N°: {{NUM_LIV}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-body-text"></div>
+
+            <!--map-->
+            {{#equals state 0}}
+            <div class="modal-map">
+              <img src="/img/map.png" />
+              <!--dots-->
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_PRELEV 0 15}} - {{HEURE_PRELEV}}" class="dot" id="map-dot-1"></div>
+              <div class="dot" id="map-dot-2"></div>
+              <div class="dot" id="map-dot-3"></div>
+              <div class="dot" id="map-dot-4"></div>
+              <!--lines-->
+              <div class="line" id="map-line-1"></div>
+              <div class="line" id="map-line-2"></div>
+              <div class="line" id="map-line-3"></div>
+            </div>
+            {{/equals}}
+            {{#equals state 1}}
+            <div class="modal-map">
+              <img src="/img/map.png" />
+              <!--dots-->
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_PRELEV 0 15}} - {{HEURE_PRELEV}}" class="dot" id="map-dot-1"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_VAL 0 15}} - {{HEURE_VAL}}" class="dot" id="map-dot-2"></div>
+              <div class="dot" id="map-dot-3"></div>
+              <div class="dot" id="map-dot-4"></div>
+              <!--lines-->
+              <div class="line line-done-1" id="map-line-1"></div>
+              <div class="line" id="map-line-2"></div>
+              <div class="line" id="map-line-3"></div>
+            </div>
+            {{/equals}}
+            {{#equals state 2}}
+            <div class="modal-map">
+              <img src="/img/map.png" />
+              <!--dots-->
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_PRELEV 0 15}} - {{HEURE_PRELEV}}" class="dot" id="map-dot-1"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_VAL 0 15}} - {{HEURE_VAL}}" class="dot" id="map-dot-2"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_SORTIE 0 15}} - {{HEURE_SORTIE}}" class="dot" id="map-dot-3"></div>
+              <div class="dot" id="map-dot-4"></div>
+              <!--lines-->
+              <div class="line line-done-1" id="map-line-1"></div>
+              <div class="line line-done-2" id="map-line-2"></div>
+              <div class="line" id="map-line-3"></div>
+            </div>
+            {{/equals}}
+            {{#equals state 3}}
+            <div class="modal-map">
+              <img src="/img/map.png" />
+              <!--dots-->
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_PRELEV 0 15}} - {{HEURE_PRELEV}}" class="dot" id="map-dot-1"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_VAL 0 15}} - {{HEURE_VAL}}" class="dot" id="map-dot-2"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_SORTIE 0 15}} - {{HEURE_SORTIE}}" class="dot" id="map-dot-3"></div>
+              <div data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-title="{{slice DATE_ARRIVE 0 15}} - {{HEURE_ARRIVE}}" class="dot" id="map-dot-4"></div>
+              <!--lines-->
+              <div class="line line-done-1" id="map-line-1"></div>
+              <div class="line line-done-2" id="map-line-2"></div>
+              <div class="line line-done-3" id="map-line-3"></div>
+            </div>
+            {{/equals}}
+
+
+          </div>
+          <div class="modal-footer d-flex p-1 align-items-center justify-content-between">
+            <div class="progress" id="progress-bar{{NUM_LIV}}"></div>
+            <button class="btn btn-outline-primary" id="article1" data-bs-toggle="modal"
+              data-bs-target="#modalarticle{{NUM_LIV}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book"
+                viewBox="0 0 16 16">
+                <path
+                  d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+              </svg>
+            </button>
+            <button type="button" class="btn btn-outline-primary" id="infos1" data-bs-toggle="modal"
+              data-bs-target="#modalainfo{{NUM_LIV}}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-info-square" viewBox="0 0 16 16">
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                <path
+                  d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Articles modale -->
+  <div class="modal fade" id="modalarticle{{NUM_LIV}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalarticle1label{{NUM_LIV}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalarticle1label{{NUM_LIV}}">Article de la commande N°: {{NUM_LIV}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column align-items-center justify-content-around">
+            <div class="m-3 p-3 w-100  d-flex align-items-center justify-content-around rounded"
+              style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
+                <path
+                  d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z" />
+              </svg>
+              <input class="d-inline w-75 text-center" type="text" value="{{ARTICLE}}" disabled>
+            </div>
+            <div class="m-3 p-3 w-100  d-flex align-items-center justify-content-around rounded"
+              style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-box-seam-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z" />
+              </svg>
+              <input class="d-inline w-75 text-center" type="text" value="{{QTE}}" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-primary" data-bs-target="#staticBackdrop{{NUM_LIV}}" data-bs-toggle="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- infos modale -->
+  <div class="modal fade" id="modalainfo{{NUM_LIV}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="modalinfolabel{{NUM_LIV}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalinfolabel{{NUM_LIV}}">Infos de la commande N°: {{NUM_LIV}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="d-flex flex-column align-items-center justify-content-around">
+            <div class="m-3 p-3 w-100  d-flex align-items-center justify-content-around rounded"
+              style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-truck"
+                viewBox="0 0 16 16">
+                <path
+                  d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+              </svg>
+              <input class="d-inline w-75 text-center" type="text" value="{{MATRICULE}}" disabled>
+            </div>
+            <div class="m-3 p-3 w-100  d-flex align-items-center justify-content-around rounded"
+              style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-person-square" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                <path
+                  d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
+              </svg>
+              <input class="d-inline w-75 text-center" type="text" value="{{CHAUFF}}" disabled>
+            </div>
+            <div class="m-3 p-3 w-100  d-flex align-items-center justify-content-around rounded"
+              style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+              </svg>
+              <input class="d-inline w-75 text-center" type="text" value="{{TEL}}" disabled>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-primary" data-bs-target="#staticBackdrop{{NUM_LIV}}" data-bs-toggle="modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var bar{{NUM_LIV}} = new ProgressBar.Circle('#progress-bar{{NUM_LIV}}', {
+      color: '#007bff',
+      strokeWidth: 4,
+      trailWidth: 1,
+      easing: 'easeInOut',
+      duration: 1400,
+      text: {
+        autoStyleContainer: false
+      },
+      from: { color: '#007bff', width: 1 },
+      to: { color: '#007bff', width: 4 },
+
+      step: function (state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
+
+        var value = Math.round(circle.value() * 100);
+        if (value === 0) {
+          circle.setText(`0%`);
+        } else {
+          circle.setText(`${value}%`);
+        }
+
+      }
+    });
+
+    bar{{NUM_LIV}}.text.style.backgroundColor = "#fff";
+    bar{{NUM_LIV}}.text.style.fontSize = ".75em";
+
+
+    switch ({{state}}) {
+                case 0:
+                  bar{{NUM_LIV}}.animate(0.25);
+      break;
+                case 1:
+                  bar{{NUM_LIV}}.animate(0.5);
+      break;
+                case 2:
+                  bar{{NUM_LIV}}.animate(0.75);
+      break;
+                case 3:
+                  bar{{NUM_LIV}}.animate(1);
+      break;
+    }
+  </script>
+  <style>
+    #progress-bar{{NUM_LIV}} {
+      width: 45px;
+      height: 45px;
+      position: relative;
+    }
+
+    #progress-bar{{NUM_LIV}} >svg {
+      background-color: white !important;
+    }
+  </style>
+  {{/each}}
+  {{else}}
+  <div id="empty-cmd-container">
+    <div id="empty-cmd">Pas de commande pour le moment &#128533;</div>
+  </div>
+  {{/if}}
+  <script src="/script.js"></script>
+
+</body>
+
+</html>
